@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/time_records', 'TimeRecordController', ['only' => [
-  'index', 'store', 'create', 'update'
-]])->middleware('auth');
+Route::group(['prefix' => 'time_records', 'middleware' => 'auth'], function() {
+    Route::get('/', 'TimeRecordController@index');
+    Route::get('/recordStartTime', 'TimeRecordController@recordStartTime');
+    Route::get('/recordEndTime', 'TimeRecordController@recordEndTime');
+});
