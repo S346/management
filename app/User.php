@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'is_active'
     ];
 
     /**
@@ -29,5 +29,11 @@ class User extends Authenticatable
 
     public function time_records() {
         return $this->hasMany(TimeRecord::class);
+    }
+
+    public function setIsActiive($flag) {
+        $this->update([
+            'is_active' => $flag ? 1 : 0,
+        ]);
     }
 }
