@@ -12,8 +12,12 @@
                         {{ session('status') }}
                     </div>
                 @endif
-
-                You are logged in!
+                @if($user->is_active)
+                    <a href="{{ route('recordEndTime') }}" class="btn btn-primary">終了</a>
+                @else
+                    <a href="{{ route('recordStartTime') }}" class="btn btn-primary">開始</a>
+                @endif
+                <a href="{{ route('timeRecords') }}" class="btn btn-link ml-3">レコード一覧</a>
             </div>
         </div>
     </div>

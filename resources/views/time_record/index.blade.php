@@ -1,15 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-<a href="{{ action('TimeRecordController@recordStartTime') }}">開始</a>
-<a href="{{ action('TimeRecordController@recordEndTime') }}">終了</a>
-
-<table>
-    @foreach($time_records as $time_record)
+<table class="table">
     <tr>
-        <td>{{ $time_record->start_at }}</td>
-        <td>{{ $time_record->end_at }}</td>
+        <th>レコード数</th>
+        <td>{{ $count }}</td>
     </tr>
-    @endforeach
+    <tr>
+        <th>合計時間</th>
+        <td>{{ $sum }}</td>
+    </tr>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>開始</th>
+            <th>終了</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($time_records as $time_record)
+        <tr>
+            <td>{{ $time_record->getStartAt() }}</td>
+            <td>{{ $time_record->getEndAt() }}</td>
+            <td>{{ $time_record->getDiffTime() }}</td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
 @endsection

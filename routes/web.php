@@ -17,12 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::group(['prefix' => 'time_records', 'middleware' => 'auth'], function() {
-    Route::get('/', 'TimeRecordController@index');
-    Route::get('/recordStartTime', 'TimeRecordController@recordStartTime');
-    Route::get('/recordEndTime', 'TimeRecordController@recordEndTime');
+Route::group(['prefix' => 'home'], function() {
+    Route::get('/', 'HomeController@index');
+    Route::get('/recordStartTime', 'TimeRecordController@recordStartTime')->name('recordStartTime');
+    Route::get('/recordEndTime', 'TimeRecordController@recordEndTime')->name('recordEndTime');
 });
+
+Route::get('/time_records', 'TimeRecordController@index')->name('timeRecords');
 
 Route::resource('/projects', 'ProjectController')->middleware('auth')->except(['create', 'edit']);

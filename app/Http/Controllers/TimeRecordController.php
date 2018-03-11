@@ -7,12 +7,17 @@ use Auth;
 use Datetime;
 use Illuminate\Http\Request;
 
-class TimeRecordController extends Controller
-{
+class TimeRecordController extends Controller {
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $user_id = Auth::id();
         $time_records = TimeRecord::where('user_id', $user_id)->get();
-        return view('time_record.index', compact('time_records', 'users'));
+        $sum = $this->getSumTime($time_records);
+        $count = $time_records->count();
+        return view('time_record.index', compact('time_records', 'sum', 'count'));
     }
 
     public function create() {}
@@ -32,7 +37,7 @@ class TimeRecordController extends Controller
             'start_at' => new Datetime(),
         ]);
         Auth::user()->setIsActiive(true);
-        return redirect('time_records');
+        return redirect('home');
     }
 
     public function recordEndTime(TimeRecord $timeRecord) {
@@ -42,6 +47,19 @@ class TimeRecordController extends Controller
             'end_at' => new Datetime(),
         ]);
         Auth::user()->setIsActiive(false);
-        return redirect('time_records');
+        return redirect('home');
+    }
+
+    public function getSumTime($r) {
+        $sum = 0;
+        foreach ($r as $item) {
+            if($item->end_at) {
+                $sum += strtotime($item->end_at);
+                $sum -= strtotime($item->start_at);
+            }
+        }
+        $h = (integer)($sum/3600);
+        $i = (integer)(($sum%3600)/60);
+        return sprintf('%d:%02d', $h, $i);
     }
 }
