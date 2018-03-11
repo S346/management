@@ -16,6 +16,7 @@ class ProjectController extends Controller {
     public function create() {}
 
     public function store(Request $request) {
+        $request->validate(Project::$validate_rule);
         Auth::user()->projects()->create($request->all());
         return redirect('projects');
     }
@@ -29,6 +30,7 @@ class ProjectController extends Controller {
     public function edit($id) {}
 
     public function update(Request $request, $id) {
+        $request->validate(Project::$validate_rule);
         $user_id = Auth::id();
         $project = Project::where('user_id', $user_id)->findOrFail($id);
         $project->update($request->all());
