@@ -1,4 +1,11 @@
 <?php
+/*
+ * id          int(10) unsigned
+ * user_id     int(10) unsigned
+ * project_id  int(10) unsigned
+ * start_at    datetime
+ * end_at      datetime         nullable
+ */
 
 namespace App;
 
@@ -17,6 +24,10 @@ class TimeRecord extends Model {
         return $this->belongsTo(User::class);
     }
 
+    public function project() {
+        return $this->belongsTo(Project::class);
+    }
+
     public function getStartAt(){
         return (new Carbon($this->start_at))->format(self::datetime_format);
     }
@@ -26,6 +37,11 @@ class TimeRecord extends Model {
             return (new Carbon($this->end_at))->format(self::datetime_format);
         }
         return '';
+    }
+
+    public function getProjectName() {
+        $project = Project::findOrFail($this->project_id);
+        return $project->name;
     }
 
     public function getDiffTime() {

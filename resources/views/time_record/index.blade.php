@@ -17,7 +17,8 @@
         <tr>
             <th>開始</th>
             <th>終了</th>
-            <th></th>
+            <th>時間</th>
+            <th>プロジェクト</th>
         </tr>
     </thead>
     <tbody>
@@ -26,6 +27,7 @@
             <td>{{ $time_record->getStartAt() }}</td>
             <td>{{ $time_record->getEndAt() }}</td>
             <td>{{ $time_record->getDiffTime() }}</td>
+            <td>{{ $time_record->getProjectName() }}</td>
         </tr>
         @endforeach
     </tbody>

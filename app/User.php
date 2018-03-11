@@ -1,4 +1,14 @@
 <?php
+/*
+ * id             int(10) unsigned
+ * name           varchar(255)
+ * email          varchar(255)
+ * password       varchar(255)
+ * remember_token varchar(100)     nullable
+ * created_at     timestamp        nullable
+ * updated_at     timestamp        nullable
+ * is_active      tinyint(1)
+ */
 
 namespace App;
 
@@ -29,6 +39,10 @@ class User extends Authenticatable
 
     public function time_records() {
         return $this->hasMany(TimeRecord::class);
+    }
+
+    public function projects() {
+        return $this->belongsToMany(Project::class);
     }
 
     public function setIsActiive($flag) {

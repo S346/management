@@ -13,8 +13,8 @@ class TimeRecordController extends Controller {
     }
 
     public function index() {
-        $user_id = Auth::id();
-        $time_records = TimeRecord::where('user_id', $user_id)->get();
+        $user = Auth::user();
+        $time_records = $user->time_records()->get();
         $sum = $this->getSumTime($time_records);
         $count = $time_records->count();
         return view('time_record.index', compact('time_records', 'sum', 'count'));
@@ -32,17 +32,18 @@ class TimeRecordController extends Controller {
 
     public function destroy(TimeRecord $timeRecord) {}
 
-    public function recordStartTime() {
+    public function recordStartTime(Request $request) {
         Auth::user()->time_records()->create([
             'start_at' => new Datetime(),
+            'project_id' => $request->project_id,
         ]);
         Auth::user()->setIsActiive(true);
         return redirect('home');
     }
 
     public function recordEndTime(TimeRecord $timeRecord) {
-        $user_id = Auth::id();
-        $time_record = TimeRecord::where('user_id', $user_id)->latest('start_at')->first();
+        $user = Auth::user();
+        $time_record = $user->time_records()->latest('start_at')->first();
         $time_record->update([
             'end_at' => new Datetime(),
         ]);

@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller {
     public function index() {
-        $user_id = Auth::id();
-        $projects = Project::where('user_id', $user_id)->get();
+        $user = Auth::user();
+        $projects = $user->projects()->get();
         return view('project.index', compact('projects'));
     }
 
@@ -22,9 +22,9 @@ class ProjectController extends Controller {
     }
 
     public function show($id) {
-        $user_id = Auth::id();
-        $project = Project::where('user_id', $user_id)->findOrFail($id);
-        return view('project.show', compact('project'));
+        $project = Project::findOrFail($id);
+        $users = $project->users;
+        return view('project.show', compact('project', 'users'));
     }
 
     public function edit($id) {}

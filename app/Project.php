@@ -1,4 +1,10 @@
 <?php
+/*
+ * id         int(10) unsigned
+ * name       varchar(255)
+ * created_at timestamp        nullable
+ * updated_at timestamp        nullable
+ */
 
 namespace App;
 
@@ -11,7 +17,11 @@ class Project extends Model {
         'name' => 'required|max:50',
     ];
 
-    public function user() {
-        return $this->hasMany(User::class);
+    public function users() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function time_records() {
+        return $this->hasMany(TimeRecord::class);
     }
 }

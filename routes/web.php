@@ -19,7 +19,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'home'], function() {
     Route::get('/', 'HomeController@index');
-    Route::get('/recordStartTime', 'TimeRecordController@recordStartTime')->name('recordStartTime');
+    Route::post('/recordStartTime', 'TimeRecordController@recordStartTime')->name('recordStartTime');
     Route::get('/recordEndTime', 'TimeRecordController@recordEndTime')->name('recordEndTime');
 });
 
