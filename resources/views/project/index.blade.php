@@ -2,22 +2,25 @@
 
 @section('content')
 <div class="container">
-    <form action="{{ action('ProjectController@store') }}" method="post">
+
+    <form action="{{ action('ProjectController@store') }}" method="post" class="form-inline">
         {{ csrf_field() }}
-        <input type="text" name="name" placeholder="プロジェクト名">
-        <input type="submit" name="" value="登録">
+        <div class="form-group mr-1">
+            <input type="text" name="name" placeholder="プロジェクト名" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">追加</button>
     </form>
-    <table>
+    <table class="table my-3">
         @foreach($projects as $project)
             <tr>
-                <th>
+                <td class="align-middle">
                     <a href="{{ action('ProjectController@show', ['id' => $project->id]) }}">{{ $project->name }}</a>
-                </th>
-                <td>
+                </td>
+                <td class="text-right align-middle">
                     <form class="d-inline" action="{{ action('ProjectController@destroy', ['id' => $project->id]) }}" method="post" onclick="return confirm('本当に削除しますか?')">
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
-                        <input type="submit" name="" value="削除">
+                        <button type="submit" class="btn btn-danger btn-sm"><i class="material-icons mr-1">delete</i>削除</button>
                     </form>
                 </td>
             </tr>
