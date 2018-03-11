@@ -24,3 +24,5 @@ Route::group(['prefix' => 'time_records', 'middleware' => 'auth'], function() {
     Route::get('/recordStartTime', 'TimeRecordController@recordStartTime');
     Route::get('/recordEndTime', 'TimeRecordController@recordEndTime');
 });
+
+Route::resource('/projects', 'ProjectController')->middleware('auth')->except(['create', 'edit']);
