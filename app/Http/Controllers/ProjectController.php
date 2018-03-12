@@ -9,8 +9,8 @@ use Illuminate\Http\Request;
 class ProjectController extends Controller {
     public function index() {
         $user = Auth::user();
-        $projects = $user->projects()->get();
-        return view('project.index', compact('projects'));
+        $projects = Project::get();
+        return view('project.index', compact('user', 'projects'));
     }
 
     public function create() {}
@@ -40,6 +40,22 @@ class ProjectController extends Controller {
     public function destroy($id) {
         $project = Project::findOrFail($id);
         $project->delete();
+        return redirect('projects');
+    }
+
+    public function join($id){
+        $user = Auth::user();
+        if(!$user->is_joining($id)) {
+            $user->projects()->attach($id);
+        }
+        return redirect('projects');
+    }
+
+    public function leave($id){
+        $user = Auth::user();
+        if($user->is_joining($id)) {
+            $user->projects()->detach($id);
+        }
         return redirect('projects');
     }
 }

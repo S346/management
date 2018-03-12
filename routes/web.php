@@ -26,3 +26,5 @@ Route::group(['prefix' => 'home'], function() {
 Route::get('/time_records', 'TimeRecordController@index')->name('timeRecords');
 
 Route::resource('/projects', 'ProjectController')->middleware('auth')->except(['create', 'edit']);
+Route::get('/projects/join/{id}', 'ProjectController@join')->middleware('auth')->name('joinProject');
+Route::get('/projects/leave/{id}', 'ProjectController@leave')->middleware('auth')->name('leaveProject');

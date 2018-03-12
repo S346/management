@@ -50,4 +50,8 @@ class User extends Authenticatable
             'is_active' => $flag ? 1 : 0,
         ]);
     }
+
+    public function is_joining($id) {
+        return $this->projects()->where('project_id', $id)->exists();
+    }
 }

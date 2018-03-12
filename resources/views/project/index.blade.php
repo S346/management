@@ -15,6 +15,11 @@
                 <a href="{{ action('ProjectController@show', ['id' => $project->id]) }}">{{ $project->name }}</a>
             </td>
             <td class="text-right align-middle">
+                @if ($user->is_joining($project->id))
+                    <a href="{{ route('leaveProject', ['id' => $project->id]) }}" class="btn btn-primary btn-sm"><i class="material-icons mr-1">person_outline</i>Leave</a>
+                @else
+                    <a href="{{ route('joinProject', ['id' => $project->id]) }}" class="btn btn-primary btn-sm"><i class="material-icons mr-1">person</i>Join</a>
+                @endif
                 <form class="d-inline" action="{{ action('ProjectController@destroy', ['id' => $project->id]) }}" method="post" onclick="return confirm('本当に削除しますか?')">
                     {{ csrf_field() }}
                     {{ method_field('delete') }}
@@ -24,4 +29,5 @@
         </tr>
     @endforeach
 </table>
+
 @endsection
