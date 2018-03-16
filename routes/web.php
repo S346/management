@@ -11,17 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::group(['prefix' => 'home'], function() {
-    Route::get('/', 'HomeController@index');
-    Route::post('/recordStartTime', 'TimeRecordController@recordStartTime')->name('recordStartTime');
-    Route::get('/recordEndTime', 'TimeRecordController@recordEndTime')->name('recordEndTime');
-});
+Route::get('/', 'HomeController@index');
+Route::post('/recordStartTime', 'TimeRecordController@recordStartTime')->name('recordStartTime');
+Route::get('/recordEndTime', 'TimeRecordController@recordEndTime')->name('recordEndTime');
 
 Route::get('/time_records', 'TimeRecordController@index')->name('timeRecords');
 

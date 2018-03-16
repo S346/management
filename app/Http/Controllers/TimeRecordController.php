@@ -38,7 +38,7 @@ class TimeRecordController extends Controller {
             'project_id' => $request->project_id,
         ]);
         Auth::user()->setIsActiive(true);
-        return redirect('home');
+        return redirect('/');
     }
 
     public function recordEndTime(TimeRecord $timeRecord) {
@@ -48,7 +48,7 @@ class TimeRecordController extends Controller {
             'end_at' => new Datetime(),
         ]);
         Auth::user()->setIsActiive(false);
-        return redirect('home');
+        return redirect('/');
     }
 
     public function getSumTime($r) {
