@@ -19,6 +19,8 @@
         "material-design-icons": "^3.0.1",
         "moment": "^2.21.0",
         "popper.js": "^1.12",
+        "pug": "^2.0.1",
+        "pug-cli": "^1.0.0-alpha6",
         "vue": "^2.5.7"
     }
 }

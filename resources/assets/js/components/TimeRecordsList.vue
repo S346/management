@@ -1,37 +1,27 @@
-<template>
-    <section id="time_records">
-        <table class="table">
-            <tr>
-                <th>レコード数</th>
-                <td>{{ amount }}</td>
-            </tr>
-            <tr>
-                <th>合計時間</th>
-                <td>{{ sum }}</td>
-            </tr>
-        </table>
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>日付</th>
-                    <th>開始</th>
-                    <th>終了</th>
-                    <th>時間</th>
-                    <th>プロジェクト</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for='record in records'>
-                    <td>{{ record.date }}</td>
-                    <td>{{ record.start_at }}</td>
-                    <td>{{ record.end_at }}</td>
-                    <td>{{ record.diff }}</td>
-                    <td>{{ record.project_name }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
+<template lang="pug">
+section#time_records
+  table.table
+    tr
+      th レコード数
+      td {{ amount }}
+    tr
+      th 合計時間
+      td {{ sum }}
+  table.table
+    thead
+      tr
+        th 日付
+        th 開始
+        th 終了
+        th 時間
+        th プロジェクト
+    tbody
+      tr(v-for="record in records")
+        td {{ record.date }}
+        td {{ record.start_at }}
+        td {{ record.end_at }}
+        td {{ record.diff }}
+        td {{ record.project_name }}
 </template>
 
 <script>
@@ -92,6 +82,7 @@
                 sum /= 1000;
                 var h = Math.floor(sum/3600);
                 var i = Math.floor((sum%3600)/60);
+                if (i<10) i = '0' + i;
                 this.sum = h + ':' + i;
             }
         }

@@ -47024,7 +47024,7 @@ var normalizeComponent = __webpack_require__(40)
 /* script */
 var __vue_script__ = __webpack_require__(41)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(177)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47203,16 +47203,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 var moment = __webpack_require__(53);
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47273,86 +47263,14 @@ var moment = __webpack_require__(53);
             sum /= 1000;
             var h = Math.floor(sum / 3600);
             var i = Math.floor(sum % 3600 / 60);
+            if (i < 10) i = '0' + i;
             this.sum = h + ':' + i;
         }
     }
 });
 
 /***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("section", { attrs: { id: "time_records" } }, [
-    _c("table", { staticClass: "table" }, [
-      _c("tr", [
-        _c("th", [_vm._v("レコード数")]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.amount))])
-      ]),
-      _vm._v(" "),
-      _c("tr", [
-        _c("th", [_vm._v("合計時間")]),
-        _vm._v(" "),
-        _c("td", [_vm._v(_vm._s(_vm.sum))])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.records, function(record) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(record.date))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(record.start_at))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(record.end_at))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(record.diff))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(record.project_name))])
-          ])
-        })
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", [_vm._v("日付")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("開始")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("終了")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("時間")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("プロジェクト")])
-      ])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-0b032e8c", module.exports)
-  }
-}
-
-/***/ }),
+/* 42 */,
 /* 43 */
 /***/ (function(module, exports) {
 
@@ -63818,6 +63736,67 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 176;
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { attrs: { id: "time_records" } }, [
+    _c("table", { staticClass: "table" }, [
+      _c("tr", [
+        _c("th", [_vm._v("レコード数")]),
+        _c("td", [_vm._v(_vm._s(_vm.amount))])
+      ]),
+      _c("tr", [
+        _c("th", [_vm._v("合計時間")]),
+        _c("td", [_vm._v(_vm._s(_vm.sum))])
+      ])
+    ]),
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _c(
+        "tbody",
+        _vm._l(_vm.records, function(record) {
+          return _c("tr", [
+            _c("td", [_vm._v(_vm._s(record.date))]),
+            _c("td", [_vm._v(_vm._s(record.start_at))]),
+            _c("td", [_vm._v(_vm._s(record.end_at))]),
+            _c("td", [_vm._v(_vm._s(record.diff))]),
+            _c("td", [_vm._v(_vm._s(record.project_name))])
+          ])
+        })
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("日付")]),
+        _c("th", [_vm._v("開始")]),
+        _c("th", [_vm._v("終了")]),
+        _c("th", [_vm._v("時間")]),
+        _c("th", [_vm._v("プロジェクト")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0b032e8c", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
