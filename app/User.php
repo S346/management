@@ -52,6 +52,6 @@ class User extends Authenticatable
     }
 
     public function is_joining($id) {
-        return $this->projects()->where('project_id', $id)->exists();
+        return $this->projects()->where('id', $id)->exists();
     }
 }
