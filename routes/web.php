@@ -29,5 +29,3 @@ Route::resource('/projects', 'ProjectController')->middleware('auth')->except(['
 Route::get('/projects/join/{id}', 'ProjectController@join')->middleware('auth')->name('joinProject');
 Route::get('/projects/leave/{id}', 'ProjectController@leave')->middleware('auth')->name('leaveProject');
 
-// todo ログイン状態でのみアクセスできるようにして、api.phpに移す
-Route::get('/api/time_records', 'Api\TimeRecordController@index');//->middleware('auth:api');
